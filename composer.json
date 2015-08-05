@@ -1,0 +1,28 @@
+{
+    "name": "adrenth/tvrage",
+    "description": "API Client for tvrage.com",
+    "type": "library",
+    "keywords": ["tvrage", "tvrage.com", "api", "library"],
+    "license": "GPL",
+    "homepage": "http://github.com/adrenth/tvrage",
+    "authors": [
+        {
+            "name": "Alwin Drenth",
+            "email": "adrenth@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.4",
+        "guzzlehttp/guzzle": "^6.0",
+        "doctrine/cache": "^1.4",
+        "symfony/serializer": "^2.7",
+        "symfony/property-access": "^2.7",
+        "danielstjules/stringy": "~1.10"
+    },
+    "autoload": {
+        "psr-0": {
+            "Adrenth\\Tvrage\\": "lib/"
+        }
+    }
+}
