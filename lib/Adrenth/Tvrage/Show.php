@@ -20,7 +20,7 @@ class Show
      *
      * @var array
      */
-    private static $mapping = [
+    protected static $mapping = [
         'showid' => 'showId'
     ];
 
@@ -373,12 +373,12 @@ class Show
      */
     public static function fromArray(array $data)
     {
-        $instance = new self();
-        $reflection = new \ReflectionClass(__CLASS__);
+        $instance = new static();
+        $reflection = new \ReflectionClass(static::class);
 
         foreach ($data as $attribute => $value) {
-            if (isset(self::$mapping[$attribute])) {
-                $attribute = self::$mapping[$attribute];
+            if (array_key_exists($attribute, static::$mapping)) {
+                $attribute = static::$mapping[$attribute];
             }
 
             $method = 'set' . S::camelize($attribute);
@@ -386,6 +386,9 @@ class Show
                 && $reflection->hasMethod($method)
             ) {
                 $instance->{$method}($value);
+            } else {
+                var_dump($attribute);
+                var_dump($value);
             }
         }
 

@@ -4,6 +4,8 @@
 namespace Adrenth\Tvrage;
 
 use Adrenth\Tvrage\Exception\UnexpectedErrorException;
+use Adrenth\Tvrage\Response\FullSearchResponseHandler;
+use Adrenth\Tvrage\Response\SearchResponse;
 use Adrenth\Tvrage\Response\SearchResponseHandler;
 use Doctrine\Common\Cache\Cache;
 use GuzzleHttp\Client as HttpClient;
@@ -50,6 +52,8 @@ class Client implements ClientInterface
 
     /**
      * Construct
+     *
+     * @param Cache $cache
      */
     public function __construct(Cache $cache)
     {
@@ -62,41 +66,114 @@ class Client implements ClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Perform a search
      *
+     * @param string $query
+     * @return SearchResponse
      * @throws UnexpectedErrorException
      */
     public function search($query)
     {
-        $xml = $this->_performApiCall(self::API_PATH_SEARCH, ['show' => $query]);
+        $cacheKey = md5(self::API_PATH_SEARCH . $query);
+
+        if ($this->cache->contains($cacheKey)) {
+            return $this->cache->fetch($cacheKey);
+        }
+
+        $xml = $this->performApiCall(
+            self::API_PATH_SEARCH,
+            ['show' => $query]
+        );
+
         $responseSearch = new SearchResponseHandler($xml);
 
-        var_dump($responseSearch);
+        $this->cache->save(
+            $cacheKey,
+            $responseSearch->getData(),
+            $this->cacheTtl
+        );
+
+        return $responseSearch->getData();
     }
 
+    /**
+     * Perform a full search
+     *
+     * @param string $query
+     * @return SearchResponse
+     * @throws UnexpectedErrorException
+     */
     public function fullSearch($query)
     {
+        $cacheKey = md5(self::API_PATH_SEARCH_FULL . $query);
 
+        if ($this->cache->contains($cacheKey)) {
+            return $this->cache->fetch($cacheKey);
+        }
+
+        $xml = $this->performApiCall(
+            self::API_PATH_SEARCH_FULL,
+            ['show' => $query]
+        );
+
+        $responseFullSearch = new FullSearchResponseHandler($xml);
+
+        $this->cache->save(
+            $cacheKey,
+            $responseFullSearch->getData(),
+            $this->cacheTtl
+        );
+
+        return $responseFullSearch->getData();
     }
 
+    /**
+     * Aquire show information
+     *
+     * @param int $showId
+     * @throws \Exception
+     * @return void
+     */
     public function showInfo($showId)
     {
-
+        throw new \Exception('Not implemented yet');
     }
 
+    /**
+     * Aquire full show information
+     *
+     * @param int $showId
+     * @throws \Exception
+     * @return void
+     */
     public function fullShowInfo($showId)
     {
-
+        throw new \Exception('Not implemented yet');
     }
 
+    /**
+     * Get episode list for show
+     *
+     * @param int $showId
+     * @throws \Exception
+     * @return void
+     */
     public function episodeList($showId)
     {
-
+        throw new \Exception('Not implemented yet');
     }
 
+    /**
+     * Get episode info
+     *
+     * @param int    $showId
+     * @param string $episode
+     * @throws \Exception
+     * @return void
+     */
     public function episodeInfo($showId, $episode)
     {
-
+        throw new \Exception('Not implemented yet');
     }
 
     /**
@@ -123,7 +200,7 @@ class Client implements ClientInterface
      *
      * @return string
      */
-    private function _performApiCall($path, array $query = [])
+    private function performApiCall($path, array $query = [])
     {
         $cacheKey = md5($path . serialize($query));
 

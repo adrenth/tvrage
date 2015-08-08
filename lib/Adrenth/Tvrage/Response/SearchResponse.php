@@ -30,4 +30,14 @@ class SearchResponse
 
         return $this;
     }
+
+    /**
+     * Get Shows
+     *
+     * @return array
+     */
+    public function getShows()
+    {
+        return $this->shows;
+    }
 }
