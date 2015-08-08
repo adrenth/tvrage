@@ -28,7 +28,7 @@ class Network
     protected $name;
 
     /**
-     * Get
+     * Get country
      *
      * @return string
      */
@@ -38,7 +38,7 @@ class Network
     }
 
     /**
-     * Set
+     * Set country
      *
      * @param string $country
      * @return Network
@@ -51,7 +51,7 @@ class Network
     }
 
     /**
-     * Get
+     * Get name
      *
      * @return string
      */
@@ -61,7 +61,7 @@ class Network
     }
 
     /**
-     * Set
+     * Set name
      *
      * @param string $name
      * @return Network

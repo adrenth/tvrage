@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Adrenth\Tvrage;
 
 /**
@@ -17,7 +16,7 @@ class DetailedShow extends Show
     /**
      * A map with properties that cannot be automatically converted
      *
-     * @var array
+     * @type array
      */
     protected static $mapping = [
         'showid' => 'showId'
@@ -33,7 +32,7 @@ class DetailedShow extends Show
     /**
      * Network
      *
-     * @type
+     * @type Network
      */
     protected $network;
 
@@ -105,6 +104,8 @@ class DetailedShow extends Show
     }
 
     /**
+     * Get Airtime
+     *
      * @return string
      */
     public function getAirtime()
@@ -113,8 +114,9 @@ class DetailedShow extends Show
     }
 
     /**
-     * @param string $airtime
+     * Set Airtime
      *
+     * @param string $airtime
      * @return DetailedShow
      */
     public function setAirtime($airtime)
@@ -125,6 +127,8 @@ class DetailedShow extends Show
     }
 
     /**
+     * Get Airday
+     *
      * @return string
      */
     public function getAirday()

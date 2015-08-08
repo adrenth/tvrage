@@ -14,7 +14,7 @@ class SearchResponse
     /**
      * Shows
      *
-     * @var array
+     * @type array
      */
     private $shows;
 

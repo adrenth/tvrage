@@ -17,7 +17,6 @@ interface ClientInterface
      * Search for TV shows using a query
      *
      * @param string $query Search query
-     *
      * @return mixed
      */
     public function search($query);
@@ -28,7 +27,6 @@ interface ClientInterface
      * The response contains fully detailed information about the TV shows.
      *
      * @param string $query Search query
-     *
      * @return mixed
      */
     public function fullSearch($query);
@@ -37,7 +35,6 @@ interface ClientInterface
      * Get show information
      *
      * @param integer $showId TvRage.com assigned Show ID
-     *
      * @return mixed
      */
     public function showInfo($showId);
@@ -46,7 +43,6 @@ interface ClientInterface
      * Get detailed TV show information
      *
      * @param integer $showId TvRage.com assigned Show ID
-     *
      * @return mixed
      */
     public function fullShowInfo($showId);
@@ -55,7 +51,6 @@ interface ClientInterface
      * Get a list of episodes for given TV show
      *
      * @param integer $showId TvRage.com assigned Show ID
-     *
      * @return mixed
      */
     public function episodeList($showId);
@@ -65,7 +60,6 @@ interface ClientInterface
      *
      * @param integer $showId  TvRage.com assigned Show ID
      * @param string  $episode Episode, e.g. 2x04
-     *
      * @return mixed
      */
     public function episodeInfo($showId, $episode);

@@ -35,7 +35,7 @@ class Aka
     protected $title;
 
     /**
-     * Get
+     * Get country
      *
      * @return null|string
      */
@@ -45,7 +45,7 @@ class Aka
     }
 
     /**
-     * Set
+     * Set country
      *
      * @param null|string $country
      * @return Aka
@@ -58,7 +58,7 @@ class Aka
     }
 
     /**
-     * Get
+     * Get custom attribute
      *
      * @return null|string
      */
@@ -68,7 +68,7 @@ class Aka
     }
 
     /**
-     * Set
+     * Set custom attribute
      *
      * @param null|string $attr
      * @return Aka
@@ -81,7 +81,7 @@ class Aka
     }
 
     /**
-     * Get
+     * Get title
      *
      * @return string
      */
@@ -91,7 +91,7 @@ class Aka
     }
 
     /**
-     * Set
+     * Set title
      *
      * @param string $title
      * @return Aka

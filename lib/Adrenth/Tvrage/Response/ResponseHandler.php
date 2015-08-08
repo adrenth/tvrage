@@ -16,14 +16,14 @@ abstract class ResponseHandler
     /**
      * Response Data
      *
-     * @var mixed
+     * @type mixed
      */
     protected $data;
 
     /**
      * RAW Data
      *
-     * @var string
+     * @type string
      */
     protected $rawData;
 

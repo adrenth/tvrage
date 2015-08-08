@@ -18,7 +18,7 @@ class Show
     /**
      * A map with properties that cannot be automatically converted
      *
-     * @var array
+     * @type array
      */
     protected static $mapping = [
         'showid' => 'showId'
@@ -27,70 +27,70 @@ class Show
     /**
      * Identifier
      *
-     * @var integer
+     * @type integer
      */
     protected $showId;
 
     /**
      * Name
      *
-     * @var string
+     * @type string
      */
     protected $name;
 
     /**
      * Link
      *
-     * @var string
+     * @type string
      */
     protected $link;
 
     /**
      * Country
      *
-     * @var string
+     * @type string
      */
     protected $country;
 
     /**
      * Year show started on
      *
-     * @var int
+     * @type int
      */
     protected $started;
 
     /**
      * Year show ended on
      *
-     * @var int
+     * @type int
      */
     protected $ended;
 
     /**
      * Number of seasons
      *
-     * @var integer
+     * @type integer
      */
     protected $seasons;
 
     /**
      * Status
      *
-     * @var string
+     * @type string
      */
     protected $status;
 
     /**
      * Classification
      *
-     * @var string
+     * @type string
      */
     protected $classification;
 
     /**
      * Genres
      *
-     * @var array
+     * @type array
      */
     protected $genres = [];
 

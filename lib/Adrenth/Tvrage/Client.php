@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Adrenth\Tvrage;
 
 use Adrenth\Tvrage\Exception\UnexpectedErrorException;
@@ -32,21 +31,21 @@ class Client implements ClientInterface
     /**
      * HTTP Client
      *
-     * @var HttpClient
+     * @type HttpClient
      */
     private $httpClient;
 
     /**
      * Cache
      *
-     * @var Cache
+     * @type Cache
      */
     private $cache;
 
     /**
      * Cache TTL
      *
-     * @var int
+     * @type int
      */
     private $cacheTtl = 86400;
 

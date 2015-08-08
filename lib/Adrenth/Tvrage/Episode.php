@@ -16,49 +16,51 @@ class Episode
     /**
      * Title
      *
-     * @var string
+     * @type string
      */
     protected $title;
 
     /**
      * Season number
      *
-     * @var integer
+     * @type integer
      */
     protected $season;
 
     /**
      * Episode number
      *
-     * @var integer
+     * @type integer
      */
     protected $episode;
 
     /**
      * Airdate
      *
-     * @var \DateTime|null
+     * @type \DateTime|null
      */
     protected $airdate;
 
     /**
      * Link
      *
-     * @var string
+     * @type string
      */
     protected $link;
 
     /**
      * Screen Capture
      *
-     * @var string
+     * @type string
      */
     protected $screencap;
 
     /**
      * Runtime in minutes
      *
-     * @var integer
+     * @type integer
      */
     protected $runtime;
+
+    // TODO
 }
