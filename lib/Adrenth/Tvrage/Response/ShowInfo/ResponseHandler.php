@@ -1,21 +1,21 @@
 <?php
 
+namespace Adrenth\Tvrage\Response\ShowInfo;
 
-namespace Adrenth\Tvrage\Response;
-
+use Adrenth\Tvrage\Response\ResponseHandler as BaseResponseHandler;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Serializer;
 
 /**
- * Class ShowInfoResponseHandler
+ * Class ResponseHandler
  *
  * @category Tvrage
- * @package  Adrenth\Tvrage\Response
+ * @package  Adrenth\Tvrage\Response\ShowInfo
  * @author   Alwin Drenth <adrenth@gmail.com>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     https://github.com/adrenth/tvrage
  */
-class ShowInfoResponseHandler extends ResponseHandler
+class ResponseHandler extends BaseResponseHandler
 {
     /**
      * Deserialize data to object(s)
@@ -27,13 +27,13 @@ class ShowInfoResponseHandler extends ResponseHandler
         $xmlEncoder = new XmlEncoder();
         $xmlEncoder->setRootNodeName('Showinfo');
         $serializer = new Serializer(
-            [new ShowInfoResponseNormalizer()],
+            [new ResponseNormalizer()],
             [$xmlEncoder]
         );
 
         return $serializer->deserialize(
             $this->getRawData(),
-            'Adrenth\Tvrage\Response\ShowInfoResponse',
+            'Adrenth\Tvrage\Response\ShowInfo\Response',
             'xml'
         );
     }

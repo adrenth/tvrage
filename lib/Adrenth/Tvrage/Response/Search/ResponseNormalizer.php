@@ -1,22 +1,25 @@
 <?php
 
-namespace Adrenth\Tvrage\Response;
+namespace Adrenth\Tvrage\Response\Search;
+
+use Adrenth\Tvrage\Show;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 /**
- * Class FullSearchResponseNormalizer
+ * Class ResponseNormalizer
  *
  * @category Tvrage
- * @package  Adrenth\Tvrage\Response
+ * @package  Adrenth\Tvrage\Response\Search
  * @author   Alwin Drenth <adrenth@gmail.com>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     https://github.com/adrenth/tvrage
  */
-class FullSearchResponseNormalizer extends ResponseNormalizer
+class ResponseNormalizer extends ObjectNormalizer
 {
     /**
      * {@inheritdoc}
      *
-     * @return SearchResponse
+     * @return Response
      */
     public function denormalize(
         $data,
@@ -24,7 +27,6 @@ class FullSearchResponseNormalizer extends ResponseNormalizer
         $format = null,
         array $context = array()
     ) {
-        /* @type $object SearchResponse */
         $object = parent::denormalize($data, $class, $format, $context);
         $normalizedData = $this->prepareForDenormalization($data);
 
@@ -33,8 +35,7 @@ class FullSearchResponseNormalizer extends ResponseNormalizer
         }
 
         foreach ($normalizedData['show'] as $show) {
-            $show = $this->denormalizeDetailedShow($show);
-            $object->addShow($show);
+            $object->addShow(Show::fromArray($show));
         }
 
         return $object;

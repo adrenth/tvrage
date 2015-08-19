@@ -1,20 +1,21 @@
 <?php
 
-namespace Adrenth\Tvrage\Response;
+namespace Adrenth\Tvrage\Response\FullSearch;
 
+use Adrenth\Tvrage\Response\ResponseHandler as BaseResponseHandler;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Serializer;
 
 /**
- * Class FullSearchResponseHandler
+ * Class ResponseHandler
  *
  * @category Tvrage
- * @package  Adrenth\Tvrage\Response
+ * @package  Adrenth\Tvrage\Response\FullSearch
  * @author   Alwin Drenth <adrenth@gmail.com>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     https://github.com/adrenth/tvrage
  */
-class FullSearchResponseHandler extends ResponseHandler
+class ResponseHandler extends BaseResponseHandler
 {
     /**
      * Deserializes data to object(s)
@@ -26,13 +27,13 @@ class FullSearchResponseHandler extends ResponseHandler
         $xmlEncoder = new XmlEncoder();
         $xmlEncoder->setRootNodeName('Results');
         $serializer = new Serializer(
-            [new FullSearchResponseNormalizer()],
+            [new ResponseNormalizer()],
             [$xmlEncoder]
         );
 
         return $serializer->deserialize(
             $this->getRawData(),
-            'Adrenth\Tvrage\Response\SearchResponse',
+            'Adrenth\Tvrage\Response\Search\Response',
             'xml'
         );
     }

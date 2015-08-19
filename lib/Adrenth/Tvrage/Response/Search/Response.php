@@ -1,19 +1,19 @@
 <?php
 
-namespace Adrenth\Tvrage\Response;
+namespace Adrenth\Tvrage\Response\Search;
 
 use Adrenth\Tvrage\Show;
 
 /**
- * Class SearchResponse
+ * Class Response
  *
  * @category Tvrage
- * @package  Adrenth\Tvrage\Response
+ * @package  Adrenth\Tvrage\Response\Search
  * @author   Alwin Drenth <adrenth@gmail.com>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     https://github.com/adrenth/tvrage
  */
-class SearchResponse
+class Response
 {
     /**
      * Shows
@@ -26,7 +26,7 @@ class SearchResponse
      * Add show
      *
      * @param Show $show
-     * @return SearchResponse
+     * @return Response
      */
     public function addShow(Show $show)
     {

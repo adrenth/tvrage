@@ -1,19 +1,19 @@
 <?php
 
-namespace Adrenth\Tvrage\Response;
+namespace Adrenth\Tvrage\Response\ShowInfo;
 
 use Adrenth\Tvrage\Show;
 
 /**
- * Class ShowInfoResponse
+ * Class Response
  *
  * @category Tvrage
- * @package  Adrenth\Tvrage\Response
+ * @package  Adrenth\Tvrage\Response\ShowInfo
  * @author   Alwin Drenth <adrenth@gmail.com>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     https://github.com/adrenth/tvrage
  */
-class ShowInfoResponse
+class Response
 {
     /**
      * Show
@@ -36,7 +36,7 @@ class ShowInfoResponse
      * Set show
      *
      * @param Show $show
-     * @return ShowInfoResponse
+     * @return Response
      */
     public function setShow(Show $show)
     {

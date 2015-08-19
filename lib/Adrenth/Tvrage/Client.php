@@ -3,11 +3,7 @@
 namespace Adrenth\Tvrage;
 
 use Adrenth\Tvrage\Exception\UnexpectedErrorException;
-use Adrenth\Tvrage\Response\FullSearchResponseHandler;
-use Adrenth\Tvrage\Response\SearchResponse;
-use Adrenth\Tvrage\Response\SearchResponseHandler;
-use Adrenth\Tvrage\Response\ShowInfoResponse;
-use Adrenth\Tvrage\Response\ShowInfoResponseHandler;
+use Adrenth\Tvrage\Response;
 use Doctrine\Common\Cache\Cache;
 use GuzzleHttp\Client as HttpClient;
 
@@ -70,7 +66,7 @@ class Client implements ClientInterface
      * Perform a search
      *
      * @param string $query
-     * @return SearchResponse
+     * @return Response\Search\Response
      * @throws UnexpectedErrorException
      */
     public function search($query)
@@ -78,22 +74,17 @@ class Client implements ClientInterface
         $cacheKey = md5(self::API_PATH_SEARCH . $query);
 
         if ($this->cache->contains($cacheKey)) {
-            return $this->cache->fetch($cacheKey);
+            $xml = $this->cache->fetch($cacheKey);
+        } else {
+            $xml = $this->performApiCall(
+                self::API_PATH_SEARCH,
+                ['show' => $query]
+            );
+
+            $this->cache->save($cacheKey, $xml, $this->cacheTtl);
         }
 
-        $xml = $this->performApiCall(
-            self::API_PATH_SEARCH,
-            ['show' => $query]
-        );
-
-        $responseHandler = new SearchResponseHandler($xml);
-
-        $this->cache->save(
-            $cacheKey,
-            $responseHandler->getData(),
-            $this->cacheTtl
-        );
-
+        $responseHandler = new Response\Search\ResponseHandler($xml);
         return $responseHandler->getData();
     }
 
@@ -101,7 +92,7 @@ class Client implements ClientInterface
      * Perform a full search
      *
      * @param string $query
-     * @return SearchResponse
+     * @return Response\Search\Response
      * @throws UnexpectedErrorException
      */
     public function fullSearch($query)
@@ -109,22 +100,17 @@ class Client implements ClientInterface
         $cacheKey = md5(self::API_PATH_SEARCH_FULL . $query);
 
         if ($this->cache->contains($cacheKey)) {
-            return $this->cache->fetch($cacheKey);
+            $xml = $this->cache->fetch($cacheKey);
+        } else {
+            $xml = $this->performApiCall(
+                self::API_PATH_SEARCH_FULL,
+                ['show' => $query]
+            );
+
+            $this->cache->save($cacheKey, $xml, $this->cacheTtl);
         }
 
-        $xml = $this->performApiCall(
-            self::API_PATH_SEARCH_FULL,
-            ['show' => $query]
-        );
-
-        $responseHandler = new FullSearchResponseHandler($xml);
-
-        $this->cache->save(
-            $cacheKey,
-            $responseHandler->getData(),
-            $this->cacheTtl
-        );
-
+        $responseHandler = new Response\FullSearch\ResponseHandler($xml);
         return $responseHandler->getData();
     }
 
@@ -132,30 +118,25 @@ class Client implements ClientInterface
      * Aquire show information
      *
      * @param int $showId
-     * @return ShowInfoResponse
+     * @return Response\ShowInfo\Response
      * @throws UnexpectedErrorException
      */
     public function showInfo($showId)
     {
-        $cacheKey = md5(self::API_PATH_SHOW_INFO);
+        $cacheKey = md5(self::API_PATH_SHOW_INFO . $showId);
 
         if ($this->cache->contains($cacheKey)) {
-            return $this->cache->fetch($cacheKey);
+            $xml = $this->cache->fetch($cacheKey);
+        } else {
+            $xml = $this->performApiCall(
+                self::API_PATH_SHOW_INFO,
+                ['sid' => $showId]
+            );
+
+            $this->cache->save($cacheKey, $xml, $this->cacheTtl);
         }
 
-        $xml = $this->performApiCall(
-            self::API_PATH_SHOW_INFO,
-            ['sid' => $showId]
-        );
-
-        $responseHandler = new ShowInfoResponseHandler($xml);
-
-        $this->cache->save(
-            $cacheKey,
-            $responseHandler->getData(),
-            $this->cacheTtl
-        );
-
+        $responseHandler = new Response\ShowInfo\ResponseHandler($xml);
         return $responseHandler->getData();
     }
 

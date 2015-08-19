@@ -1,22 +1,24 @@
 <?php
 
-namespace Adrenth\Tvrage\Response;
+namespace Adrenth\Tvrage\Response\ShowInfo;
+
+use Adrenth\Tvrage\Response\ResponseNormalizer as BaseResponseNormalizer;
 
 /**
- * Class ShowInfoResponseNormalizer
+ * Class ResponseNormalizer
  *
  * @category Tvrage
- * @package  Adrenth\Tvrage\Response
+ * @package  Adrenth\Tvrage\Response\ShowInfo
  * @author   Alwin Drenth <adrenth@gmail.com>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     https://github.com/adrenth/tvrage
  */
-class ShowInfoResponseNormalizer extends ResponseNormalizer
+class ResponseNormalizer extends BaseResponseNormalizer
 {
     /**
      * {@inheritdoc}
      *
-     * @return ShowInfoResponse
+     * @return Response
      */
     public function denormalize(
         $data,
@@ -24,7 +26,6 @@ class ShowInfoResponseNormalizer extends ResponseNormalizer
         $format = null,
         array $context = array()
     ) {
-        /* @type $object ShowInfoResponse */
         $object = parent::denormalize($data, $class, $format, $context);
         $normalizedData = $this->prepareForDenormalization($data);
 
