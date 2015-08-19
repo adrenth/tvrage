@@ -23,6 +23,13 @@ class DetailedShow extends Show
     ];
 
     /**
+     * Startdate
+     *
+     * @type string
+     */
+    protected $startdate;
+
+    /**
      * Runtime in minutes
      *
      * @type integer
@@ -56,6 +63,43 @@ class DetailedShow extends Show
      * @type array
      */
     protected $akas;
+
+    /**
+     * Origin Country
+     *
+     * @type string
+     */
+    protected $originCountry;
+
+    /**
+     * Time zone
+     *
+     * @type string
+     */
+    protected $timeZone;
+
+    /**
+     * Get startdate
+     *
+     * @return string
+     */
+    public function getStartdate()
+    {
+        return $this->startdate;
+    }
+
+    /**
+     * Set startdate
+     *
+     * @param string $startdate
+     * @return DetailedShow
+     */
+    public function setStartdate($startdate)
+    {
+        $this->startdate = $startdate;
+
+        return $this;
+    }
 
     /**
      * Get runtime
@@ -185,6 +229,52 @@ class DetailedShow extends Show
     public function addAka(Aka $aka)
     {
         $this->akas[] = $aka;
+
+        return $this;
+    }
+
+    /**
+     * Get origin country
+     *
+     * @return string
+     */
+    public function getOriginCountry()
+    {
+        return $this->originCountry;
+    }
+
+    /**
+     * Set origin country
+     *
+     * @param string $originCountry
+     * @return DetailedShow
+     */
+    public function setOriginCountry($originCountry)
+    {
+        $this->originCountry = $originCountry;
+
+        return $this;
+    }
+
+    /**
+     * Get time zone
+     *
+     * @return string
+     */
+    public function getTimeZone()
+    {
+        return $this->timeZone;
+    }
+
+    /**
+     * Set time zone
+     *
+     * @param string $timeZone
+     * @return DetailedShow
+     */
+    public function setTimeZone($timeZone)
+    {
+        $this->timeZone = $timeZone;
 
         return $this;
     }

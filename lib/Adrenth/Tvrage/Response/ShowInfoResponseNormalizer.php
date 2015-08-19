@@ -3,7 +3,7 @@
 namespace Adrenth\Tvrage\Response;
 
 /**
- * Class FullSearchResponseNormalizer
+ * Class ShowInfoResponseNormalizer
  *
  * @category Tvrage
  * @package  Adrenth\Tvrage\Response
@@ -11,12 +11,12 @@ namespace Adrenth\Tvrage\Response;
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     https://github.com/adrenth/tvrage
  */
-class FullSearchResponseNormalizer extends ResponseNormalizer
+class ShowInfoResponseNormalizer extends ResponseNormalizer
 {
     /**
      * {@inheritdoc}
      *
-     * @return SearchResponse
+     * @return ShowInfoResponse
      */
     public function denormalize(
         $data,
@@ -24,17 +24,13 @@ class FullSearchResponseNormalizer extends ResponseNormalizer
         $format = null,
         array $context = array()
     ) {
-        /* @type $object SearchResponse */
+        /* @type $object ShowInfoResponse */
         $object = parent::denormalize($data, $class, $format, $context);
         $normalizedData = $this->prepareForDenormalization($data);
 
-        if (!array_key_exists('show', $normalizedData)) {
-            return $object;
-        }
-
-        foreach ($normalizedData['show'] as $show) {
-            $show = $this->denormalizeDetailedShow($show);
-            $object->addShow($show);
+        if (is_array($normalizedData) && count($normalizedData) !== 0) {
+            $show = $this->denormalizeDetailedShow($normalizedData);
+            $object->setShow($show);
         }
 
         return $object;

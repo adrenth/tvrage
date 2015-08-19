@@ -11,6 +11,7 @@ $client = new Adrenth\Tvrage\Client($cache);
 
 //$response = $client->fullSearch('the following');
 //$response = $client->fullSearch('lost');
-$response = $client->fullSearch('ray donovan');
+//$response = $client->fullSearch('ray donovan');
+$response = $client->showInfo(30309);
 echo '<pre>';
 print_r($response);

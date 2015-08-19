@@ -5,7 +5,7 @@ namespace Adrenth\Tvrage\Response;
 use Adrenth\Tvrage\Show;
 
 /**
- * Class SearchResponse
+ * Class ShowInfoResponse
  *
  * @category Tvrage
  * @package  Adrenth\Tvrage\Response
@@ -13,45 +13,45 @@ use Adrenth\Tvrage\Show;
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     https://github.com/adrenth/tvrage
  */
-class SearchResponse
+class ShowInfoResponse
 {
     /**
-     * Shows
+     * Show
      *
-     * @type array
+     * @type Show
      */
-    private $shows;
+    private $show;
 
     /**
-     * Add show
+     * Get show
+     *
+     * @return mixed
+     */
+    public function getShow()
+    {
+        return $this->show;
+    }
+
+    /**
+     * Set show
      *
      * @param Show $show
-     * @return SearchResponse
+     * @return ShowInfoResponse
      */
-    public function addShow(Show $show)
+    public function setShow(Show $show)
     {
-        $this->shows[] = $show;
+        $this->show = $show;
 
         return $this;
     }
 
     /**
-     * Get shows
-     *
-     * @return array
-     */
-    public function getShows()
-    {
-        return $this->shows;
-    }
-
-    /**
-     * Has shows
+     * Has show
      *
      * @return bool
      */
-    public function hasShows()
+    public function hasShow()
     {
-        return count($this->shows) !== 0;
+        return $this->show !== null;
     }
 }

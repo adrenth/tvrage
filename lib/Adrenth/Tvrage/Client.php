@@ -6,6 +6,8 @@ use Adrenth\Tvrage\Exception\UnexpectedErrorException;
 use Adrenth\Tvrage\Response\FullSearchResponseHandler;
 use Adrenth\Tvrage\Response\SearchResponse;
 use Adrenth\Tvrage\Response\SearchResponseHandler;
+use Adrenth\Tvrage\Response\ShowInfoResponse;
+use Adrenth\Tvrage\Response\ShowInfoResponseHandler;
 use Doctrine\Common\Cache\Cache;
 use GuzzleHttp\Client as HttpClient;
 
@@ -84,15 +86,15 @@ class Client implements ClientInterface
             ['show' => $query]
         );
 
-        $responseSearch = new SearchResponseHandler($xml);
+        $responseHandler = new SearchResponseHandler($xml);
 
         $this->cache->save(
             $cacheKey,
-            $responseSearch->getData(),
+            $responseHandler->getData(),
             $this->cacheTtl
         );
 
-        return $responseSearch->getData();
+        return $responseHandler->getData();
     }
 
     /**
@@ -115,27 +117,46 @@ class Client implements ClientInterface
             ['show' => $query]
         );
 
-        $responseFullSearch = new FullSearchResponseHandler($xml);
+        $responseHandler = new FullSearchResponseHandler($xml);
 
         $this->cache->save(
             $cacheKey,
-            $responseFullSearch->getData(),
+            $responseHandler->getData(),
             $this->cacheTtl
         );
 
-        return $responseFullSearch->getData();
+        return $responseHandler->getData();
     }
 
     /**
      * Aquire show information
      *
      * @param int $showId
-     * @throws \Exception
-     * @return void
+     * @return ShowInfoResponse
+     * @throws UnexpectedErrorException
      */
     public function showInfo($showId)
     {
-        throw new \Exception('Not implemented yet');
+        $cacheKey = md5(self::API_PATH_SHOW_INFO);
+
+        if ($this->cache->contains($cacheKey)) {
+            return $this->cache->fetch($cacheKey);
+        }
+
+        $xml = $this->performApiCall(
+            self::API_PATH_SHOW_INFO,
+            ['sid' => $showId]
+        );
+
+        $responseHandler = new ShowInfoResponseHandler($xml);
+
+        $this->cache->save(
+            $cacheKey,
+            $responseHandler->getData(),
+            $this->cacheTtl
+        );
+
+        return $responseHandler->getData();
     }
 
     /**
