@@ -4,7 +4,9 @@ namespace Adrenth\Tvrage\Response;
 
 use Adrenth\Tvrage\Aka;
 use Adrenth\Tvrage\DetailedShow;
+use Adrenth\Tvrage\Episode;
 use Adrenth\Tvrage\Network;
+use Adrenth\Tvrage\Season;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 /**
@@ -39,7 +41,8 @@ abstract class ResponseNormalizer extends ObjectNormalizer
             'startdate' => 'setStartdate',
             'started' => 'setStarted',
             'ended' => 'setEnded',
-            'seasons' => 'setSeasons',
+            'seasons' => 'setSeasonCount',
+            'totalseasons' => 'setSeasonCount',
             'status' => 'setStatus',
             'runtime' => 'setRuntime',
             'classification' => 'setClassification',
@@ -51,7 +54,8 @@ abstract class ResponseNormalizer extends ObjectNormalizer
         $complexMap = [
             'akas' => 'handleAkas',
             'genres' => 'handleGenres',
-            'network' => 'handleNetwork'
+            'network' => 'handleNetwork',
+            'Episodelist' => 'handleEpisodeList'
         ];
 
         foreach ($show as $attribute => $value) {
@@ -75,7 +79,7 @@ abstract class ResponseNormalizer extends ObjectNormalizer
      * @param array        $akas
      * @return void
      */
-    protected function handleAkas(DetailedShow $show, array $akas)
+    private function handleAkas(DetailedShow $show, array $akas)
     {
         if (!array_key_exists('aka', $akas)) {
             return;
@@ -114,8 +118,9 @@ abstract class ResponseNormalizer extends ObjectNormalizer
      * @param DetailedShow $show
      * @param array        $genres
      * @return void
+     * @throws \InvalidArgumentException
      */
-    protected function handleGenres(DetailedShow $show, $genres)
+    private function handleGenres(DetailedShow $show, $genres)
     {
         if (empty($genres)) {
             return;
@@ -143,7 +148,7 @@ abstract class ResponseNormalizer extends ObjectNormalizer
      * @param array        $networks
      * @return void
      */
-    protected function handleNetwork(DetailedShow $show, array $networks)
+    private function handleNetwork(DetailedShow $show, array $networks)
     {
         $network = new Network();
 
@@ -155,5 +160,44 @@ abstract class ResponseNormalizer extends ObjectNormalizer
         }
 
         $show->setNetwork($network);
+    }
+
+    /**
+     * Handle Episodelist
+     *
+     * @param DetailedShow $show
+     * @param array        $episodeList
+     */
+    private function handleEpisodeList(DetailedShow $show, array $episodeList)
+    {
+        if (!array_key_exists('Season', $episodeList)) {
+            return;
+        }
+
+        $seasons = $episodeList['Season'];
+
+        foreach ($seasons as $dataSeason) {
+            $season = new Season();
+            $season->setNumber($dataSeason['@no']);
+            $show->addSeason($season);
+
+            if (!array_key_exists('episode', $dataSeason)
+                || !is_array($dataSeason['episode'])
+            ) {
+                continue;
+            }
+
+            foreach ($dataSeason['episode'] as $dataEpisode) {
+                $episode = new Episode();
+                $episode->setNumber($dataEpisode['epnum'])
+                    ->setTitle($dataEpisode['title'])
+                    ->setAirdate($dataEpisode['airdate'])
+                    ->setLink($dataEpisode['link'])
+                    ->setScreencap($dataEpisode['screencap'])
+                ;
+
+                $season->addEpisode($episode);
+            }
+        }
     }
 }

@@ -79,6 +79,13 @@ class DetailedShow extends Show
     protected $timeZone;
 
     /**
+     * Seasons
+     *
+     * @type array
+     */
+    protected $seasons;
+
+    /**
      * Get startdate
      *
      * @return string
@@ -92,12 +99,11 @@ class DetailedShow extends Show
      * Set startdate
      *
      * @param string $startdate
-     * @return DetailedShow
+     * @return $this
      */
     public function setStartdate($startdate)
     {
         $this->startdate = $startdate;
-
         return $this;
     }
 
@@ -115,12 +121,11 @@ class DetailedShow extends Show
      * Set runtime in minutes
      *
      * @param int $runtime
-     * @return DetailedShow
+     * @return $this
      */
     public function setRuntime($runtime)
     {
         $this->runtime = (int) $runtime;
-
         return $this;
     }
 
@@ -138,12 +143,11 @@ class DetailedShow extends Show
      * Set Network
      *
      * @param Network $network
-     * @return DetailedShow
+     * @return $this
      */
     public function setNetwork(Network $network)
     {
         $this->network = $network;
-
         return $this;
     }
 
@@ -161,12 +165,11 @@ class DetailedShow extends Show
      * Set Airtime
      *
      * @param string $airtime
-     * @return DetailedShow
+     * @return $this
      */
     public function setAirtime($airtime)
     {
         $this->airtime = $airtime;
-
         return $this;
     }
 
@@ -184,12 +187,11 @@ class DetailedShow extends Show
      * Set Air Day
      *
      * @param string $airday
-     * @return DetailedShow
+     * @return $this
      */
     public function setAirday($airday)
     {
         $this->airday = $airday;
-
         return $this;
     }
 
@@ -207,7 +209,7 @@ class DetailedShow extends Show
      * Set A.K.A's
      *
      * @param array $akas
-     * @return DetailedShow
+     * @return $this
      */
     public function setAkas(array $akas)
     {
@@ -224,12 +226,11 @@ class DetailedShow extends Show
      * Add A.K.A
      *
      * @param Aka $aka
-     * @return DetailedShow
+     * @return $this
      */
     public function addAka(Aka $aka)
     {
         $this->akas[] = $aka;
-
         return $this;
     }
 
@@ -247,12 +248,11 @@ class DetailedShow extends Show
      * Set origin country
      *
      * @param string $originCountry
-     * @return DetailedShow
+     * @return $this
      */
     public function setOriginCountry($originCountry)
     {
         $this->originCountry = $originCountry;
-
         return $this;
     }
 
@@ -270,12 +270,51 @@ class DetailedShow extends Show
      * Set time zone
      *
      * @param string $timeZone
-     * @return DetailedShow
+     * @return $this
      */
     public function setTimeZone($timeZone)
     {
         $this->timeZone = $timeZone;
+        return $this;
+    }
 
+    /**
+     * Get seasons
+     *
+     * @return array
+     */
+    public function getSeasons()
+    {
+        return $this->seasons;
+    }
+
+    /**
+     * Set seasons
+     *
+     * @param array $seasons
+     * @return $this
+     * @throws \InvalidArgumentException
+     */
+    public function setSeasons(array $seasons)
+    {
+        $this->seasons = [];
+
+        foreach ($seasons as $season) {
+            $this->addSeason($season);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Add season
+     *
+     * @param Season $season
+     * @return $this
+     */
+    public function addSeason(Season $season)
+    {
+        $this->seasons[] = $season;
         return $this;
     }
 }

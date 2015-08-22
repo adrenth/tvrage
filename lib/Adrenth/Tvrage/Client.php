@@ -144,12 +144,26 @@ class Client implements ClientInterface
      * Aquire full show information
      *
      * @param int $showId
-     * @throws \Exception
-     * @return void
+     * @return Response\ShowInfo\Response
+     * @throws UnexpectedErrorException
      */
     public function fullShowInfo($showId)
     {
-        throw new \Exception('Not implemented yet');
+        $cacheKey = md5(self::API_PATH_SHOW_INFO_FULL . $showId);
+
+        if ($this->cache->contains($cacheKey)) {
+            $xml = $this->cache->fetch($cacheKey);
+        } else {
+            $xml = $this->performApiCall(
+                self::API_PATH_SHOW_INFO_FULL,
+                ['sid' => $showId]
+            );
+
+            $this->cache->save($cacheKey, $xml, $this->cacheTtl);
+        }
+
+        $responseHandler = new Response\ShowInfo\ResponseHandler($xml);
+        return $responseHandler->getData();
     }
 
     /**

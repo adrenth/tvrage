@@ -25,19 +25,12 @@ class Episode
      *
      * @type integer
      */
-    protected $season;
-
-    /**
-     * Episode number
-     *
-     * @type integer
-     */
-    protected $episode;
+    protected $number;
 
     /**
      * Airdate
      *
-     * @type \DateTime|null
+     * @type string
      */
     protected $airdate;
 
@@ -62,5 +55,136 @@ class Episode
      */
     protected $runtime;
 
-    // TODO
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return $this
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get number
+     *
+     * @return int
+     */
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
+    /**
+     * Set number
+     *
+     * @param int $number
+     * @return $this
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+        return $this;
+    }
+
+    /**
+     * Get air date
+     *
+     * @return string
+     */
+    public function getAirdate()
+    {
+        return $this->airdate;
+    }
+
+    /**
+     * Set air date
+     *
+     * @param string $airdate
+     * @return $this
+     */
+    public function setAirdate($airdate)
+    {
+        $this->airdate = $airdate;
+        return $this;
+    }
+
+    /**
+     * Get link
+     *
+     * @return string
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * Set link
+     *
+     * @param string $link
+     * @return $this
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+        return $this;
+    }
+
+    /**
+     * Get screencap
+     *
+     * @return string
+     */
+    public function getScreencap()
+    {
+        return $this->screencap;
+    }
+
+    /**
+     * Set screencap
+     *
+     * @param string $screencap
+     * @return $this
+     */
+    public function setScreencap($screencap)
+    {
+        $this->screencap = $screencap;
+        return $this;
+    }
+
+    /**
+     * Get runtime
+     *
+     * @return int
+     */
+    public function getRuntime()
+    {
+        return $this->runtime;
+    }
+
+    /**
+     * Set runtime
+     *
+     * @param int $runtime
+     * @return $this
+     */
+    public function setRuntime($runtime)
+    {
+        $this->runtime = $runtime;
+        return $this;
+    }
 }

@@ -21,7 +21,7 @@ class Show
      * @type array
      */
     protected static $mapping = [
-        'showid' => 'showId'
+        'showid' => 'showId',
     ];
 
     /**
@@ -71,7 +71,7 @@ class Show
      *
      * @type integer
      */
-    protected $seasons;
+    protected $seasonCount;
 
     /**
      * Status
@@ -109,12 +109,11 @@ class Show
      *
      * @param int $showId Field Description
      *
-     * @return Show
+     * @return $this
      */
     public function setShowId($showId)
     {
         $this->showId = (int) $showId;
-
         return $this;
     }
 
@@ -132,13 +131,11 @@ class Show
      * Set name
      *
      * @param string $name Field Description
-     *
-     * @return Show
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -157,12 +154,11 @@ class Show
      *
      * @param string $link Field Description
      *
-     * @return Show
+     * @return $this
      */
     public function setLink($link)
     {
         $this->link = $link;
-
         return $this;
     }
 
@@ -180,13 +176,11 @@ class Show
      * Set country
      *
      * @param string $country Field Description
-     *
-     * @return Show
+     * @return $this
      */
     public function setCountry($country)
     {
         $this->country = $country;
-
         return $this;
     }
 
@@ -204,13 +198,11 @@ class Show
      * Set started
      *
      * @param int $started Field Description
-     *
-     * @return Show
+     * @return $this
      */
     public function setStarted($started)
     {
         $this->started = (int) $started;
-
         return $this;
     }
 
@@ -228,8 +220,7 @@ class Show
      * Set ended
      *
      * @param int $ended Field Description
-     *
-     * @return Show
+     * @return $this
      */
     public function setEnded($ended)
     {
@@ -243,22 +234,20 @@ class Show
      *
      * @return int
      */
-    public function getSeasons()
+    public function getSeasonCount()
     {
-        return $this->seasons;
+        return $this->seasonCount;
     }
 
     /**
-     * Set seasons
+     * Set season count
      *
-     * @param int $seasons Field Description
-     *
-     * @return Show
+     * @param int $seasonCount
+     * @return $this
      */
-    public function setSeasons($seasons)
+    public function setSeasonCount($seasonCount)
     {
-        $this->seasons = (int) $seasons;
-
+        $this->seasonCount = (int) $seasonCount;
         return $this;
     }
 
@@ -276,13 +265,11 @@ class Show
      * Set status
      *
      * @param string $status Field Description
-     *
-     * @return Show
+     * @return $this
      */
     public function setStatus($status)
     {
         $this->status = $status;
-
         return $this;
     }
 
@@ -300,13 +287,11 @@ class Show
      * Set classification
      *
      * @param string $classification Field Description
-     *
-     * @return Show
+     * @return $this
      */
     public function setClassification($classification)
     {
         $this->classification = $classification;
-
         return $this;
     }
 
@@ -324,8 +309,8 @@ class Show
      * Set genres
      *
      * @param array|string $genres Field Description
-     *
-     * @return Show
+     * @return $this
+     * @throws \InvalidArgumentException
      */
     public function setGenres($genres)
     {
@@ -344,8 +329,8 @@ class Show
      * Add a genre
      *
      * @param string $genre Genre
-     *
-     * @return Show
+     * @return $this
+     * @throws \InvalidArgumentException
      */
     public function addGenre($genre)
     {
@@ -368,11 +353,12 @@ class Show
      * Create instance from array
      *
      * @param array $data Array with show information
-     *
-     * @return Show
+     * @return $this
      */
     public static function fromArray(array $data)
     {
+        throw new \Exception('Do not use');
+
         $instance = new static();
         $reflection = new \ReflectionClass(static::class);
 
