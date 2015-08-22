@@ -59,8 +59,9 @@ interface ClientInterface
      * Get episode information
      *
      * @param integer $showId  TvRage.com assigned Show ID
-     * @param string  $episode Episode, e.g. 2x04
+     * @param string  $season  Season number
+     * @param string  $episode Episode number
      * @return mixed
      */
-    public function episodeInfo($showId, $episode);
+    public function episodeInfo($showId, $season, $episode);
 }

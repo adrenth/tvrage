@@ -189,12 +189,26 @@ abstract class ResponseNormalizer extends ObjectNormalizer
 
             foreach ($dataSeason['episode'] as $dataEpisode) {
                 $episode = new Episode();
-                $episode->setNumber($dataEpisode['epnum'])
-                    ->setTitle($dataEpisode['title'])
-                    ->setAirdate($dataEpisode['airdate'])
-                    ->setLink($dataEpisode['link'])
-                    ->setScreencap($dataEpisode['screencap'])
-                ;
+
+                if (array_key_exists('epnum', $dataEpisode)) {
+                    $episode->setNumber($dataEpisode['epnum']);
+                }
+
+                if (array_key_exists('title', $dataEpisode)) {
+                    $episode->setTitle($dataEpisode['title']);
+                }
+
+                if (array_key_exists('airdate', $dataEpisode)) {
+                    $episode->setAirdate($dataEpisode['airdate']);
+                }
+
+                if (array_key_exists('link', $dataEpisode)) {
+                    $episode->setLink($dataEpisode['link']);
+                }
+
+                if (array_key_exists('screencap', $dataEpisode)) {
+                    $episode->setScreencap($dataEpisode['screencap']);
+                }
 
                 $season->addEpisode($episode);
             }

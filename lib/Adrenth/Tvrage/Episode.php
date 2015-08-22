@@ -28,6 +28,13 @@ class Episode
     protected $number;
 
     /**
+     * Season number
+     *
+     * @type integer
+     */
+    protected $seasonNumber;
+
+    /**
      * Airdate
      *
      * @type string
@@ -96,7 +103,29 @@ class Episode
      */
     public function setNumber($number)
     {
-        $this->number = $number;
+        $this->number = (int)$number;
+        return $this;
+    }
+
+    /**
+     * Get season number
+     *
+     * @return int
+     */
+    public function getSeasonNumber()
+    {
+        return $this->seasonNumber;
+    }
+
+    /**
+     * Set season number
+     *
+     * @param int $seasonNumber
+     * @return $this
+     */
+    public function setSeasonNumber($seasonNumber)
+    {
+        $this->seasonNumber = (int)$seasonNumber;
         return $this;
     }
 

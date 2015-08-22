@@ -63,10 +63,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * Perform a search
-     *
-     * @param string $query
-     * @return Response\Search\Response
+     * @inheritdoc
      * @throws UnexpectedErrorException
      */
     public function search($query)
@@ -89,10 +86,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * Perform a full search
-     *
-     * @param string $query
-     * @return Response\Search\Response
+     * @inheritdoc
      * @throws UnexpectedErrorException
      */
     public function fullSearch($query)
@@ -115,10 +109,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * Aquire show information
-     *
-     * @param int $showId
-     * @return Response\ShowInfo\Response
+     * @inheritdoc
      * @throws UnexpectedErrorException
      */
     public function showInfo($showId)
@@ -141,10 +132,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * Aquire full show information
-     *
-     * @param int $showId
-     * @return Response\ShowInfo\Response
+     * @inheritdoc
      * @throws UnexpectedErrorException
      */
     public function fullShowInfo($showId)
@@ -167,28 +155,52 @@ class Client implements ClientInterface
     }
 
     /**
-     * Get episode list for show
-     *
-     * @param int $showId
-     * @throws \Exception
-     * @return void
+     * @inheritdoc
+     * @throws UnexpectedErrorException
      */
     public function episodeList($showId)
     {
-        throw new \Exception('Not implemented yet');
+        $cacheKey = md5(self::API_PATH_EPISODE_LIST . $showId);
+
+        if ($this->cache->contains($cacheKey)) {
+            $xml = $this->cache->fetch($cacheKey);
+        } else {
+            $xml = $this->performApiCall(
+                self::API_PATH_EPISODE_LIST,
+                ['sid' => $showId]
+            );
+
+            $this->cache->save($cacheKey, $xml, $this->cacheTtl);
+        }
+
+        $responseHandler = new Response\EpisodeList\ResponseHandler($xml);
+        return $responseHandler->getData();
     }
 
     /**
-     * Get episode info
-     *
-     * @param int    $showId
-     * @param string $episode
-     * @throws \Exception
-     * @return void
+     * @inheritdoc
+     * @throws UnexpectedErrorException
      */
-    public function episodeInfo($showId, $episode)
+    public function episodeInfo($showId, $season, $episode)
     {
-        throw new \Exception('Not implemented yet');
+        $cacheKey = md5(self::API_PATH_EPISODE_INFO . $showId . $season . $episode);
+
+        if ($this->cache->contains($cacheKey)) {
+            $xml = $this->cache->fetch($cacheKey);
+        } else {
+            $xml = $this->performApiCall(
+                self::API_PATH_EPISODE_INFO,
+                [
+                    'sid' => $showId,
+                    'ep' => $season . 'x' . str_pad($episode, 2, '0', STR_PAD_LEFT)
+                ]
+            );
+
+            $this->cache->save($cacheKey, $xml, $this->cacheTtl);
+        }
+
+        $responseHandler = new Response\EpisodeInfo\ResponseHandler($xml);
+        return $responseHandler->getData();
     }
 
     /**
