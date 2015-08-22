@@ -3,7 +3,7 @@
 namespace Adrenth\Tvrage\Response\Search;
 
 use Adrenth\Tvrage\Show;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Adrenth\Tvrage\Response\ResponseNormalizer as BaseResponseNormalizer;
 
 /**
  * Class ResponseNormalizer
@@ -14,7 +14,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     https://github.com/adrenth/tvrage
  */
-class ResponseNormalizer extends ObjectNormalizer
+class ResponseNormalizer extends BaseResponseNormalizer
 {
     /**
      * {@inheritdoc}
@@ -35,7 +35,8 @@ class ResponseNormalizer extends ObjectNormalizer
         }
 
         foreach ($normalizedData['show'] as $show) {
-            $object->addShow(Show::fromArray($show));
+            $show = $this->denormalizeShow($show);
+            $object->addShow($show);
         }
 
         return $object;

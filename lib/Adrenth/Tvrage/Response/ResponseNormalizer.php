@@ -7,6 +7,7 @@ use Adrenth\Tvrage\DetailedShow;
 use Adrenth\Tvrage\Episode;
 use Adrenth\Tvrage\Network;
 use Adrenth\Tvrage\Season;
+use Adrenth\Tvrage\Show;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 /**
@@ -21,12 +22,49 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 abstract class ResponseNormalizer extends ObjectNormalizer
 {
     /**
+     * @param array $data
+     */
+    final protected function denormalizeShow(array $data)
+    {
+        $referenceMap = [
+            'showid' => 'setShowId',
+            'name' => 'setName',
+            'link' => 'setLink',
+            'country' => 'setCountry',
+            'started' => 'setStarted',
+            'ended' => 'setEnded',
+            'seasons' => 'setSeasonCount',
+            'status' => 'setStatus',
+            'classification' => 'setClassification'
+        ];
+
+        $complexMap = [
+            'genres' => 'handleGenres',
+        ];
+
+        $show = new Show();
+
+        foreach ($data as $attribute => $value) {
+            if (array_key_exists($attribute, $referenceMap)) {
+                $show->$referenceMap[$attribute]($value);
+            } elseif (array_key_exists($attribute, $complexMap)) {
+                $this->$complexMap[$attribute]($show, $value);
+            } else {
+                var_dump($attribute);
+                var_dump($value);
+            }
+        }
+
+        return $show;
+    }
+
+    /**
      * Denormalize Detailed Show
      *
-     * @param array $show
+     * @param array $data
      * @return DetailedShow
      */
-    final protected function denormalizeDetailedShow(array $show)
+    final protected function denormalizeDetailedShow(array $data)
     {
         $detailedShow = new DetailedShow();
 
@@ -35,6 +73,7 @@ abstract class ResponseNormalizer extends ObjectNormalizer
             'name' => 'setName',
             'showname' => 'setName',
             'link' => 'setLink',
+            'image' => 'setImage',
             'showlink' => 'setLink',
             'country' => 'setCountry',
             'origin_country' => 'setOriginCountry',
@@ -58,7 +97,7 @@ abstract class ResponseNormalizer extends ObjectNormalizer
             'Episodelist' => 'handleEpisodeList'
         ];
 
-        foreach ($show as $attribute => $value) {
+        foreach ($data as $attribute => $value) {
             if (array_key_exists($attribute, $referenceMap)) {
                 $detailedShow->$referenceMap[$attribute]($value);
             } elseif (array_key_exists($attribute, $complexMap)) {
@@ -115,12 +154,12 @@ abstract class ResponseNormalizer extends ObjectNormalizer
     /**
      * Handle Genres
      *
-     * @param DetailedShow $show
-     * @param array        $genres
+     * @param Show  $show
+     * @param array $genres
      * @return void
      * @throws \InvalidArgumentException
      */
-    private function handleGenres(DetailedShow $show, $genres)
+    private function handleGenres(Show $show, $genres)
     {
         if (empty($genres)) {
             return;

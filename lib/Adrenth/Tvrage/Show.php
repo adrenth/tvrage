@@ -2,8 +2,6 @@
 
 namespace Adrenth\Tvrage;
 
-use Stringy\StaticStringy as S;
-
 /**
  * Class Show
  *
@@ -15,15 +13,6 @@ use Stringy\StaticStringy as S;
  */
 class Show
 {
-    /**
-     * A map with properties that cannot be automatically converted
-     *
-     * @type array
-     */
-    protected static $mapping = [
-        'showid' => 'showId',
-    ];
-
     /**
      * Identifier
      *
@@ -347,37 +336,5 @@ class Show
         }
 
         return $this;
-    }
-
-    /**
-     * Create instance from array
-     *
-     * @param array $data Array with show information
-     * @return $this
-     */
-    public static function fromArray(array $data)
-    {
-        throw new \Exception('Do not use');
-
-        $instance = new static();
-        $reflection = new \ReflectionClass(static::class);
-
-        foreach ($data as $attribute => $value) {
-            if (array_key_exists($attribute, static::$mapping)) {
-                $attribute = static::$mapping[$attribute];
-            }
-
-            $method = 'set' . S::camelize($attribute);
-            if ($reflection->hasProperty($attribute)
-                && $reflection->hasMethod($method)
-            ) {
-                $instance->{$method}($value);
-            } else {
-                var_dump($attribute);
-                var_dump($value);
-            }
-        }
-
-        return $instance;
     }
 }

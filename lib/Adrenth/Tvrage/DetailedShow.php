@@ -14,15 +14,6 @@ namespace Adrenth\Tvrage;
 class DetailedShow extends Show
 {
     /**
-     * A map with properties that cannot be automatically converted
-     *
-     * @type array
-     */
-    protected static $mapping = [
-        'showid' => 'showId'
-    ];
-
-    /**
      * Startdate
      *
      * @type string
@@ -84,6 +75,13 @@ class DetailedShow extends Show
      * @type array
      */
     protected $seasons;
+
+    /**
+     * Image URL
+     *
+     * @type string
+     */
+    protected $image;
 
     /**
      * Get startdate
@@ -315,6 +313,28 @@ class DetailedShow extends Show
     public function addSeason(Season $season)
     {
         $this->seasons[] = $season;
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return $this
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
         return $this;
     }
 }
