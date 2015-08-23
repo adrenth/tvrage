@@ -2,8 +2,10 @@
 
 namespace Adrenth\Tvrage;
 
+use Adrenth\Tvrage\Exception\InvalidHandlerException;
+use Adrenth\Tvrage\Exception\InvalidXmlInResponseException;
 use Adrenth\Tvrage\Exception\UnexpectedErrorException;
-use Adrenth\Tvrage\Response;
+use Adrenth\Tvrage\Response\Handler\ResponseHandlerFactory;
 use Doctrine\Common\Cache\Cache;
 use GuzzleHttp\Client as HttpClient;
 
@@ -65,6 +67,8 @@ class Client implements ClientInterface
     /**
      * @inheritdoc
      * @throws UnexpectedErrorException
+     * @throws InvalidXmlInResponseException
+     * @throws InvalidHandlerException
      */
     public function search($query)
     {
@@ -81,13 +85,15 @@ class Client implements ClientInterface
             $this->cache->save($cacheKey, $xml, $this->cacheTtl);
         }
 
-        $responseHandler = new Response\Search\ResponseHandler($xml);
-        return $responseHandler->getData();
+        $responseHandler = ResponseHandlerFactory::create('Search', $xml);
+        return $responseHandler->handle();
     }
 
     /**
      * @inheritdoc
      * @throws UnexpectedErrorException
+     * @throws InvalidXmlInResponseException
+     * @throws InvalidHandlerException
      */
     public function fullSearch($query)
     {
@@ -104,13 +110,15 @@ class Client implements ClientInterface
             $this->cache->save($cacheKey, $xml, $this->cacheTtl);
         }
 
-        $responseHandler = new Response\FullSearch\ResponseHandler($xml);
-        return $responseHandler->getData();
+        $responseHandler = ResponseHandlerFactory::create('FullSearch', $xml);
+        return $responseHandler->handle();
     }
 
     /**
      * @inheritdoc
      * @throws UnexpectedErrorException
+     * @throws InvalidXmlInResponseException
+     * @throws InvalidHandlerException
      */
     public function showInfo($showId)
     {
@@ -127,13 +135,15 @@ class Client implements ClientInterface
             $this->cache->save($cacheKey, $xml, $this->cacheTtl);
         }
 
-        $responseHandler = new Response\ShowInfo\ResponseHandler($xml);
-        return $responseHandler->getData();
+        $responseHandler = ResponseHandlerFactory::create('ShowInfo', $xml);
+        return $responseHandler->handle();
     }
 
     /**
      * @inheritdoc
      * @throws UnexpectedErrorException
+     * @throws InvalidXmlInResponseException
+     * @throws InvalidHandlerException
      */
     public function fullShowInfo($showId)
     {
@@ -150,13 +160,15 @@ class Client implements ClientInterface
             $this->cache->save($cacheKey, $xml, $this->cacheTtl);
         }
 
-        $responseHandler = new Response\ShowInfo\ResponseHandler($xml);
-        return $responseHandler->getData();
+        $responseHandler = ResponseHandlerFactory::create('ShowInfo', $xml);
+        return $responseHandler->handle();
     }
 
     /**
      * @inheritdoc
      * @throws UnexpectedErrorException
+     * @throws InvalidXmlInResponseException
+     * @throws InvalidHandlerException
      */
     public function episodeList($showId)
     {
@@ -173,13 +185,15 @@ class Client implements ClientInterface
             $this->cache->save($cacheKey, $xml, $this->cacheTtl);
         }
 
-        $responseHandler = new Response\EpisodeList\ResponseHandler($xml);
-        return $responseHandler->getData();
+        $responseHandler = ResponseHandlerFactory::create('EpisodeList', $xml);
+        return $responseHandler->handle();
     }
 
     /**
      * @inheritdoc
      * @throws UnexpectedErrorException
+     * @throws InvalidXmlInResponseException
+     * @throws InvalidHandlerException
      */
     public function episodeInfo($showId, $season, $episode)
     {
@@ -199,8 +213,8 @@ class Client implements ClientInterface
             $this->cache->save($cacheKey, $xml, $this->cacheTtl);
         }
 
-        $responseHandler = new Response\EpisodeInfo\ResponseHandler($xml);
-        return $responseHandler->getData();
+        $responseHandler = ResponseHandlerFactory::create('EpisodeInfo', $xml);
+        return $responseHandler->handle();
     }
 
     /**

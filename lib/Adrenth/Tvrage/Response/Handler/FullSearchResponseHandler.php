@@ -1,0 +1,37 @@
+<?php
+
+namespace Adrenth\Tvrage\Response\Handler;
+
+use Adrenth\Tvrage\Response\Traits\DenormalizesDetailedShow;
+
+/**
+ * Class FullSearchResponseHandler
+ *
+ * @category Tvrage
+ * @package  Adrenth\Tvrage\Response\Handler
+ * @author   Alwin Drenth <adrenth@gmail.com>
+ * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @link     https://github.com/adrenth/tvrage
+ */
+class FullSearchResponseHandler extends SearchResponseHandler
+{
+    use DenormalizesDetailedShow;
+
+    /**
+     * Denormalize shows
+     *
+     * @param array $items
+     * @return array
+     */
+    protected function denormalize(array $items)
+    {
+        $shows = [];
+
+        foreach ($items as $show) {
+            $show = $this->denormalizeDetailedShow($show);
+            $shows[] = $show;
+        }
+
+        return $shows;
+    }
+}

@@ -1,19 +1,19 @@
 <?php
 
-namespace Adrenth\Tvrage\Response\ShowInfo;
+namespace Adrenth\Tvrage\Response;
 
 use Adrenth\Tvrage\Show;
 
 /**
- * Class Response
+ * Class ShowResponse
  *
  * @category Tvrage
- * @package  Adrenth\Tvrage\Response\ShowInfo
+ * @package  Adrenth\Tvrage\Response
  * @author   Alwin Drenth <adrenth@gmail.com>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     https://github.com/adrenth/tvrage
  */
-class Response
+class ShowResponse implements Response
 {
     /**
      * Show
@@ -23,6 +23,16 @@ class Response
     private $show;
 
     /**
+     * Construct
+     *
+     * @param Show|null $show
+     */
+    public function __construct(Show $show = null)
+    {
+        $this->show = $show;
+    }
+
+    /**
      * Get show
      *
      * @return mixed
@@ -30,19 +40,6 @@ class Response
     public function getShow()
     {
         return $this->show;
-    }
-
-    /**
-     * Set show
-     *
-     * @param Show $show
-     * @return Response
-     */
-    public function setShow(Show $show)
-    {
-        $this->show = $show;
-
-        return $this;
     }
 
     /**

@@ -1,19 +1,19 @@
 <?php
 
-namespace Adrenth\Tvrage\Response\Search;
+namespace Adrenth\Tvrage\Response;
 
 use Adrenth\Tvrage\Show;
 
 /**
- * Class Response
+ * Class ShowsResponse
  *
  * @category Tvrage
- * @package  Adrenth\Tvrage\Response\Search
+ * @package  Adrenth\Tvrage\Response
  * @author   Alwin Drenth <adrenth@gmail.com>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     https://github.com/adrenth/tvrage
  */
-class Response
+class ShowsResponse implements Response
 {
     /**
      * Shows
@@ -23,15 +23,26 @@ class Response
     private $shows;
 
     /**
+     * Construct
+     *
+     * @param array $shows
+     */
+    public function __construct(array $shows = [])
+    {
+        foreach ($shows as $show) {
+            $this->addShow($show);
+        }
+    }
+
+    /**
      * Add show
      *
      * @param Show $show
-     * @return Response
+     * @return $this
      */
-    public function addShow(Show $show)
+    private function addShow(Show $show)
     {
         $this->shows[] = $show;
-
         return $this;
     }
 

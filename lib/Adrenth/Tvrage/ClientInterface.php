@@ -2,6 +2,8 @@
 
 namespace Adrenth\Tvrage;
 
+use Adrenth\Tvrage\Response\SearchResponse;
+
 /**
  * Interface ClientInterface
  *
@@ -17,7 +19,7 @@ interface ClientInterface
      * Search for TV shows using a query
      *
      * @param string $query Search query
-     * @return mixed
+     * @return SearchResponse
      */
     public function search($query);
 
@@ -27,7 +29,7 @@ interface ClientInterface
      * The response contains fully detailed information about the TV shows.
      *
      * @param string $query Search query
-     * @return mixed
+     * @return SearchResponse
      */
     public function fullSearch($query);
 

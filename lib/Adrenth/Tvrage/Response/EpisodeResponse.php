@@ -1,19 +1,19 @@
 <?php
 
-namespace Adrenth\Tvrage\Response\EpisodeInfo;
+namespace Adrenth\Tvrage\Response;
 
 use Adrenth\Tvrage\Episode;
 
 /**
- * Class Response
+ * Class EpisodeResponse
  *
  * @category Tvrage
- * @package  Adrenth\Tvrage\Response\EpisodeInfo
+ * @package  Adrenth\Tvrage\Response
  * @author   Alwin Drenth <adrenth@gmail.com>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     https://github.com/adrenth/tvrage
  */
-class Response
+class EpisodeResponse
 {
     /**
      * Latest Episode
