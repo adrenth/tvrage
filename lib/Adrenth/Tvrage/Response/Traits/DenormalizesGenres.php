@@ -13,7 +13,7 @@ use Adrenth\Tvrage\Show;
  * @category Tvrage
  * @package  Adrenth\Tvrage\Response\Traits
  * @author   Alwin Drenth <adrenth@gmail.com>
- * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @license  http://opensource.org/licenses/MIT The MIT License (MIT)
  * @link     https://github.com/adrenth/tvrage
  */
 trait DenormalizesGenres

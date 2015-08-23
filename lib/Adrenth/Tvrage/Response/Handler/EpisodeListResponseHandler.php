@@ -14,7 +14,7 @@ use Symfony\Component\Serializer\Exception\UnexpectedValueException;
  * @category Tvrage
  * @package  Adrenth\Tvrage\Response\Handler
  * @author   Alwin Drenth <adrenth@gmail.com>
- * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @license  http://opensource.org/licenses/MIT The MIT License (MIT)
  * @link     https://github.com/adrenth/tvrage
  */
 class EpisodeListResponseHandler extends XmlResponseHandler
