@@ -18,14 +18,14 @@ class Season
      *
      * @type integer
      */
-    protected $number;
+    private $number;
 
     /**
      * Episodes
      *
      * @type Episode[]
      */
-    protected $episodes;
+    private $episodes;
 
     /**
      * Get number

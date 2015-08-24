@@ -18,21 +18,21 @@ class Aka
      *
      * @type string|null
      */
-    protected $country;
+    private $country;
 
     /**
      * Extra attribute e.g 'Alternate title', 'Unofficial Working Title'
      *
      * @type string|null
      */
-    protected $attr;
+    private $attr;
 
     /**
      * Title
      *
      * @type string
      */
-    protected $title;
+    private $title;
 
     /**
      * Get country

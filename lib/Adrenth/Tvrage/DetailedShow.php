@@ -18,70 +18,70 @@ class DetailedShow extends Show
      *
      * @type string
      */
-    protected $startdate;
+    private $startdate;
 
     /**
      * Runtime in minutes
      *
      * @type integer
      */
-    protected $runtime;
+    private $runtime;
 
     /**
      * Network
      *
      * @type Network
      */
-    protected $network;
+    private $network;
 
     /**
      * Airtime
      *
      * @type string
      */
-    protected $airtime;
+    private $airtime;
 
     /**
      * Airday
      *
      * @type string
      */
-    protected $airday;
+    private $airday;
 
     /**
      * A.K.A.S (Also Know As)
      *
      * @type array
      */
-    protected $akas;
+    private $akas;
 
     /**
      * Origin Country
      *
      * @type string
      */
-    protected $originCountry;
+    private $originCountry;
 
     /**
      * Time zone
      *
      * @type string
      */
-    protected $timeZone;
+    private $timeZone;
 
     /**
      * Seasons
      *
      * @type array
      */
-    protected $seasons;
+    private $seasons;
 
     /**
      * Image URL
      *
      * @type string
      */
-    protected $image;
+    private $image;
 
     /**
      * Get startdate

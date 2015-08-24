@@ -236,12 +236,10 @@ class Client implements ClientInterface
      *
      * @param string $path  API path (use constants e.g. Client::API_PATH_*)
      * @param array  $query Query parameters
-     *
-     * @throws UnexpectedErrorException
-     *
      * @return string
+     * @throws UnexpectedErrorException
      */
-    private function performApiCall($path, array $query = [])
+    protected function performApiCall($path, array $query = [])
     {
         $cacheKey = md5($path . serialize($query));
 
