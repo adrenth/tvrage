@@ -18,14 +18,14 @@ class Network
      *
      * @type string
      */
-    protected $country;
+    private $country;
 
     /**
      * Name
      *
      * @type string
      */
-    protected $name;
+    private $name;
 
     /**
      * Get country

@@ -18,49 +18,49 @@ class Episode
      *
      * @type string
      */
-    protected $title;
+    private $title;
 
     /**
      * Season number
      *
      * @type integer
      */
-    protected $number;
+    private $number;
 
     /**
      * Season number
      *
      * @type integer
      */
-    protected $seasonNumber;
+    private $seasonNumber;
 
     /**
      * Airdate
      *
      * @type string
      */
-    protected $airdate;
+    private $airdate;
 
     /**
      * Link
      *
      * @type string
      */
-    protected $link;
+    private $link;
 
     /**
      * Screen Capture
      *
      * @type string
      */
-    protected $screencap;
+    private $screencap;
 
     /**
      * Runtime in minutes
      *
      * @type integer
      */
-    protected $runtime;
+    private $runtime;
 
     /**
      * Get title
