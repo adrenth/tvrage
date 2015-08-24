@@ -2,7 +2,10 @@
 
 namespace Adrenth\Tvrage;
 
-use Adrenth\Tvrage\Response\SearchResponse;
+use Adrenth\Tvrage\Response\EpisodeResponse;
+use Adrenth\Tvrage\Response\SeasonsResponse;
+use Adrenth\Tvrage\Response\ShowResponse;
+use Adrenth\Tvrage\Response\ShowsResponse;
 
 /**
  * Interface ClientInterface
@@ -19,7 +22,7 @@ interface ClientInterface
      * Search for TV shows using a query
      *
      * @param string $query Search query
-     * @return SearchResponse
+     * @return ShowsResponse
      */
     public function search($query);
 
@@ -29,7 +32,7 @@ interface ClientInterface
      * The response contains fully detailed information about the TV shows.
      *
      * @param string $query Search query
-     * @return SearchResponse
+     * @return ShowsResponse
      */
     public function fullSearch($query);
 
@@ -37,7 +40,7 @@ interface ClientInterface
      * Get show information
      *
      * @param integer $showId TvRage.com assigned Show ID
-     * @return mixed
+     * @return ShowResponse
      */
     public function showInfo($showId);
 
@@ -45,7 +48,7 @@ interface ClientInterface
      * Get detailed TV show information
      *
      * @param integer $showId TvRage.com assigned Show ID
-     * @return mixed
+     * @return ShowResponse
      */
     public function fullShowInfo($showId);
 
@@ -53,7 +56,7 @@ interface ClientInterface
      * Get a list of episodes for given TV show
      *
      * @param integer $showId TvRage.com assigned Show ID
-     * @return mixed
+     * @return SeasonsResponse
      */
     public function episodeList($showId);
 
@@ -63,7 +66,7 @@ interface ClientInterface
      * @param integer $showId  TvRage.com assigned Show ID
      * @param string  $season  Season number
      * @param string  $episode Episode number
-     * @return mixed
+     * @return EpisodeResponse
      */
     public function episodeInfo($showId, $season, $episode);
 }
