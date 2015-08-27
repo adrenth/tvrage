@@ -35,7 +35,7 @@ class ShowResponse implements Response
     /**
      * Get show
      *
-     * @return mixed
+     * @return Show
      */
     public function getShow()
     {

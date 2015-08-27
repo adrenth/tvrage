@@ -14,13 +14,6 @@ namespace Adrenth\Tvrage;
 class DetailedShow extends Show
 {
     /**
-     * Startdate
-     *
-     * @type string
-     */
-    private $startdate;
-
-    /**
      * Runtime in minutes
      *
      * @type integer
@@ -82,28 +75,6 @@ class DetailedShow extends Show
      * @type string
      */
     private $image;
-
-    /**
-     * Get startdate
-     *
-     * @return string
-     */
-    public function getStartdate()
-    {
-        return $this->startdate;
-    }
-
-    /**
-     * Set startdate
-     *
-     * @param string $startdate
-     * @return $this
-     */
-    public function setStartdate($startdate)
-    {
-        $this->startdate = $startdate;
-        return $this;
-    }
 
     /**
      * Get runtime

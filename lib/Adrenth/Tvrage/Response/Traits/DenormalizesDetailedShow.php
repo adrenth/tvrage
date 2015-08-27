@@ -43,11 +43,9 @@ trait DenormalizesDetailedShow
             'link' => 'setLink',
             'image' => 'setImage',
             'showlink' => 'setLink',
+            'ended' => 'setEnded',
             'country' => 'setCountry',
             'origin_country' => 'setOriginCountry',
-            'startdate' => 'setStartdate',
-            'started' => 'setStarted',
-            'ended' => 'setEnded',
             'seasons' => 'setSeasonCount',
             'totalseasons' => 'setSeasonCount',
             'status' => 'setStatus',
@@ -62,7 +60,12 @@ trait DenormalizesDetailedShow
             'akas' => 'handleAkas',
             'genres' => 'handleGenres',
             'network' => 'handleNetwork',
-            'Episodelist' => 'handleEpisodeList'
+            'Episodelist' => 'handleEpisodeList',
+        ];
+
+        $ignore = [
+            'startdate' => null,
+            'started' => null,
         ];
 
         foreach ($data as $attribute => $value) {
@@ -70,7 +73,7 @@ trait DenormalizesDetailedShow
                 $detailedShow->$referenceMap[$attribute]($value);
             } elseif (array_key_exists($attribute, $complexMap)) {
                 $this->$complexMap[$attribute]($detailedShow, $value);
-            } else {
+            } elseif (!array_key_exists($attribute, $ignore)) {
                 throw new UnimplementedAttributeException(sprintf(
                     'Attribute %s is not implemented',
                     $attribute

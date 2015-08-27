@@ -35,25 +35,18 @@ class Show
     protected $link;
 
     /**
+     * Show is ended
+     *
+     * @type bool
+     */
+    protected $ended;
+
+    /**
      * Country
      *
      * @type string
      */
     protected $country;
-
-    /**
-     * Year show started on
-     *
-     * @type int
-     */
-    protected $started;
-
-    /**
-     * Year show ended on
-     *
-     * @type int
-     */
-    protected $ended;
 
     /**
      * Number of seasons
@@ -96,7 +89,7 @@ class Show
     /**
      * Set showId
      *
-     * @param int $showId Field Description
+     * @param int $showId
      *
      * @return $this
      */
@@ -119,7 +112,7 @@ class Show
     /**
      * Set name
      *
-     * @param string $name Field Description
+     * @param string $name
      * @return $this
      */
     public function setName($name)
@@ -141,13 +134,38 @@ class Show
     /**
      * Set link
      *
-     * @param string $link Field Description
+     * @param string $link
      *
      * @return $this
      */
     public function setLink($link)
     {
+        if (!is_null($link) && substr($link, 0, 17) === 'http://www.tvrage') {
+            $link = str_replace('www.tvrage', 'tvrage', $link);
+        }
         $this->link = $link;
+        return $this;
+    }
+
+    /**
+     * Get ended
+     *
+     * @return boolean
+     */
+    public function isEnded()
+    {
+        return $this->ended;
+    }
+
+    /**
+     * Set ended
+     *
+     * @param boolean $ended
+     * @return $this
+     */
+    public function setEnded($ended)
+    {
+        $this->ended = (bool)$ended;
         return $this;
     }
 
@@ -164,57 +182,12 @@ class Show
     /**
      * Set country
      *
-     * @param string $country Field Description
+     * @param string $country
      * @return $this
      */
     public function setCountry($country)
     {
         $this->country = $country;
-        return $this;
-    }
-
-    /**
-     * Get started
-     *
-     * @return int
-     */
-    public function getStarted()
-    {
-        return $this->started;
-    }
-
-    /**
-     * Set started
-     *
-     * @param int $started Field Description
-     * @return $this
-     */
-    public function setStarted($started)
-    {
-        $this->started = (int) $started;
-        return $this;
-    }
-
-    /**
-     * Get ended
-     *
-     * @return int
-     */
-    public function getEnded()
-    {
-        return $this->ended;
-    }
-
-    /**
-     * Set ended
-     *
-     * @param int $ended Field Description
-     * @return $this
-     */
-    public function setEnded($ended)
-    {
-        $this->ended = (int) $ended;
-
         return $this;
     }
 
@@ -253,7 +226,7 @@ class Show
     /**
      * Set status
      *
-     * @param string $status Field Description
+     * @param string $status
      * @return $this
      */
     public function setStatus($status)
@@ -275,7 +248,7 @@ class Show
     /**
      * Set classification
      *
-     * @param string $classification Field Description
+     * @param string $classification
      * @return $this
      */
     public function setClassification($classification)
@@ -297,7 +270,7 @@ class Show
     /**
      * Set genres
      *
-     * @param array|string $genres Field Description
+     * @param array|string $genres
      * @return $this
      * @throws \InvalidArgumentException
      */
