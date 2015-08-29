@@ -288,6 +288,16 @@ class DetailedShow extends Show
     }
 
     /**
+     * Has seasons
+     *
+     * @return bool
+     */
+    public function hasSeasons()
+    {
+        return count($this->seasons) !== 0;
+    }
+
+    /**
      * Get image
      *
      * @return string
