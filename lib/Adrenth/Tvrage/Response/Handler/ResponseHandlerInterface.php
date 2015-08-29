@@ -5,7 +5,7 @@ namespace Adrenth\Tvrage\Response\Handler;
 use Adrenth\Tvrage\Response\Response;
 
 /**
- * Class ResponseHandler
+ * Class ResponseHandlerInterface
  *
  * @category Tvrage
  * @package  Adrenth\Tvrage\Response\Handler
@@ -13,7 +13,7 @@ use Adrenth\Tvrage\Response\Response;
  * @license  http://opensource.org/licenses/MIT The MIT License (MIT)
  * @link     https://github.com/adrenth/tvrage
  */
-interface ResponseHandler
+interface ResponseHandlerInterface
 {
     /**
      * Handle the response which produces the Response object

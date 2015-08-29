@@ -3,7 +3,7 @@
 namespace Adrenth\Tvrage\Response;
 
 /**
- * Class Response
+ * Class ResponseInterface
  *
  * @category Tvrage
  * @package  Adrenth\Tvrage\Response
@@ -11,7 +11,7 @@ namespace Adrenth\Tvrage\Response;
  * @license  http://opensource.org/licenses/MIT The MIT License (MIT)
  * @link     https://github.com/adrenth/tvrage
  */
-interface Response
+interface ResponseInterface
 {
 
 }

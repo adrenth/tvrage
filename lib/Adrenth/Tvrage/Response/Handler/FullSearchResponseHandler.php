@@ -2,6 +2,7 @@
 
 namespace Adrenth\Tvrage\Response\Handler;
 
+use Adrenth\Tvrage\Exception\UnimplementedAttributeException;
 use Adrenth\Tvrage\Response\Traits\DenormalizesDetailedShow;
 
 /**
@@ -22,6 +23,7 @@ class FullSearchResponseHandler extends SearchResponseHandler
      *
      * @param array $items
      * @return array
+     * @throws UnimplementedAttributeException
      */
     protected function denormalize(array $items)
     {

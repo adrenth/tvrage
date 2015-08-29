@@ -13,7 +13,7 @@ use Adrenth\Tvrage\Episode;
  * @license  http://opensource.org/licenses/MIT The MIT License (MIT)
  * @link     https://github.com/adrenth/tvrage
  */
-class EpisodeResponse
+class EpisodeResponse implements ResponseInterface
 {
     /**
      * Latest Episode

@@ -3,6 +3,7 @@
 namespace Adrenth\Tvrage\Response\Handler;
 
 use Adrenth\Tvrage\Exception\InvalidXmlInResponseException;
+use Adrenth\Tvrage\Exception\UnimplementedAttributeException;
 use Adrenth\Tvrage\Response\ShowsResponse;
 use Adrenth\Tvrage\Response\Traits\DenormalizesShow;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
@@ -23,6 +24,7 @@ class SearchResponseHandler extends XmlResponseHandler
 
     /**
      * @inheritdoc
+     * @throws UnimplementedAttributeException
      */
     public function handle()
     {
@@ -45,6 +47,7 @@ class SearchResponseHandler extends XmlResponseHandler
             );
         }
 
+        $data = $this->trimArray($data);
         $shows = $this->denormalize($data['show']);
 
         return new ShowsResponse($shows);
@@ -55,6 +58,7 @@ class SearchResponseHandler extends XmlResponseHandler
      *
      * @param array $items
      * @return array
+     * @throws UnimplementedAttributeException
      */
     protected function denormalize(array $items)
     {

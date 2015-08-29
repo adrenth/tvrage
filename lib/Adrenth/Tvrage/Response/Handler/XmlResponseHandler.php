@@ -3,6 +3,7 @@
 namespace Adrenth\Tvrage\Response\Handler;
 
 use Adrenth\Tvrage\Exception\InvalidXmlInResponseException;
+use Adrenth\Tvrage\Response\Traits\TrimsArray;
 
 /**
  * Class XmlResponseHandler
@@ -13,8 +14,10 @@ use Adrenth\Tvrage\Exception\InvalidXmlInResponseException;
  * @license  http://opensource.org/licenses/MIT The MIT License (MIT)
  * @link     https://github.com/adrenth/tvrage
  */
-abstract class XmlResponseHandler implements ResponseHandler
+abstract class XmlResponseHandler implements ResponseHandlerInterface
 {
+    use TrimsArray;
+
     /**
      * XML data
      *
@@ -37,6 +40,4 @@ abstract class XmlResponseHandler implements ResponseHandler
      * @throws InvalidXmlInResponseException
      */
     abstract public function handle();
-
-    // TODO general function for encoding xml to array
 }
