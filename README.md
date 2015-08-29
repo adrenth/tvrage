@@ -1,8 +1,8 @@
 # adrenth/tvrage
 
-[![Build Status](https://secure.travis-ci.org/adrenth/tvrage.png?branch=master)](http://travis-ci.org/adrenth/tvrage) [![Latest Stable Version](https://poser.pugx.org/adrenth/tvrage/v/stable.png)](https://packagist.org/packages/adrenth/tvrage) [![Total Downloads](https://poser.pugx.org/adrenth/tvrage/downloads.png)](https://packagist.org/packages/adrenth/tvrage)
+[![Build Status](https://secure.travis-ci.org/adrenth/tvrage.png?branch=master)](http://travis-ci.org/adrenth/tvrage) [![Latest Stable Version](https://poser.pugx.org/adrenth/tvrage/v/stable)](https://packagist.org/packages/adrenth/tvrage) [![Total Downloads](https://poser.pugx.org/adrenth/tvrage/downloads)](https://packagist.org/packages/adrenth/tvrage) [![Latest Unstable Version](https://poser.pugx.org/adrenth/tvrage/v/unstable)](https://packagist.org/packages/adrenth/tvrage) [![License](https://poser.pugx.org/adrenth/tvrage/license)](https://packagist.org/packages/adrenth/tvrage) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/27972813-82e6-4dc3-a168-36377084b69a/mini.png)](https://insight.sensiolabs.com/projects/27972813-82e6-4dc3-a168-36377084b69a) [![HHVM Status](http://hhvm.h4cc.de/badge/adrenth/tvrage.svg)](http://hhvm.h4cc.de/package/adrenth/tvrage)
 
-This is a API client for the tvrage.com website.
+This is an API client for the tvrage.com website. It's using the XML feeds that are publicly available. For more info visit [http://services.tvrage.com/info.php?page=main](http://services.tvrage.com/info.php?page=main).
 
 ## Installation
 
