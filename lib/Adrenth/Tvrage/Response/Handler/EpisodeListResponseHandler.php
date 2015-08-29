@@ -3,6 +3,7 @@
 namespace Adrenth\Tvrage\Response\Handler;
 
 use Adrenth\Tvrage\Exception\InvalidXmlInResponseException;
+use Adrenth\Tvrage\Exception\UnimplementedAttributeException;
 use Adrenth\Tvrage\Response\SeasonsResponse;
 use Adrenth\Tvrage\Response\Traits\DenormalizesDetailedShow;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
@@ -23,6 +24,7 @@ class EpisodeListResponseHandler extends XmlResponseHandler
 
     /**
      * @inheritdoc
+     * @throws UnimplementedAttributeException
      */
     public function handle()
     {
@@ -38,6 +40,7 @@ class EpisodeListResponseHandler extends XmlResponseHandler
             return new SeasonsResponse();
         }
 
+        $data = $this->trimArray($data);
         $show = $this->denormalizeDetailedShow($data);
 
         return new SeasonsResponse($show->getSeasons());

@@ -3,6 +3,7 @@
 namespace Adrenth\Tvrage\Response\Handler;
 
 use Adrenth\Tvrage\Exception\InvalidXmlInResponseException;
+use Adrenth\Tvrage\Exception\UnimplementedAttributeException;
 use Adrenth\Tvrage\Response\ShowResponse;
 use Adrenth\Tvrage\Response\Traits\DenormalizesDetailedShow;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
@@ -23,6 +24,7 @@ class ShowInfoResponseHandler extends XmlResponseHandler
 
     /**
      * @inheritdoc
+     * @throws UnimplementedAttributeException
      */
     public function handle()
     {
@@ -35,6 +37,7 @@ class ShowInfoResponseHandler extends XmlResponseHandler
         }
 
         if (is_array($data) && count($data) !== 0) {
+            $data = $this->trimArray($data);
             $show = $this->denormalizeDetailedShow($data);
             return new ShowResponse($show);
         }

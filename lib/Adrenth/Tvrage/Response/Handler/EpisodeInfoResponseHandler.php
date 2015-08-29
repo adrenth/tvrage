@@ -41,6 +41,7 @@ class EpisodeInfoResponseHandler extends XmlResponseHandler
             return new EpisodeResponse(null, null);
         }
 
+        $data = $this->trimArray($data);
         $episode = $latestEpisode = null;
 
         if (array_key_exists('episode', $data)) {

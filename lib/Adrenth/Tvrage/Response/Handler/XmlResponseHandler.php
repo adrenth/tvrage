@@ -3,6 +3,7 @@
 namespace Adrenth\Tvrage\Response\Handler;
 
 use Adrenth\Tvrage\Exception\InvalidXmlInResponseException;
+use Adrenth\Tvrage\Response\Traits\TrimsArray;
 
 /**
  * Class XmlResponseHandler
@@ -15,6 +16,8 @@ use Adrenth\Tvrage\Exception\InvalidXmlInResponseException;
  */
 abstract class XmlResponseHandler implements ResponseHandler
 {
+    use TrimsArray;
+
     /**
      * XML data
      *

@@ -172,30 +172,42 @@ trait DenormalizesDetailedShow
             }
 
             foreach ($dataSeason['episode'] as $dataEpisode) {
-                $episode = new Episode();
-
-                if (array_key_exists('epnum', $dataEpisode)) {
-                    $episode->setNumber($dataEpisode['epnum']);
-                }
-
-                if (array_key_exists('title', $dataEpisode)) {
-                    $episode->setTitle($dataEpisode['title']);
-                }
-
-                if (array_key_exists('airdate', $dataEpisode)) {
-                    $episode->setAirdate($dataEpisode['airdate']);
-                }
-
-                if (array_key_exists('link', $dataEpisode)) {
-                    $episode->setLink($dataEpisode['link']);
-                }
-
-                if (array_key_exists('screencap', $dataEpisode)) {
-                    $episode->setScreencap($dataEpisode['screencap']);
-                }
-
+                $episode = $this->handleEpisode($dataEpisode);
                 $season->addEpisode($episode);
             }
         }
+    }
+
+    /**
+     * Handle Episode
+     *
+     * @param array $data
+     * @return Episode
+     */
+    protected function handleEpisode(array $data)
+    {
+        $episode = new Episode();
+
+        if (array_key_exists('epnum', $data)) {
+            $episode->setNumber($data['epnum']);
+        }
+
+        if (array_key_exists('title', $data)) {
+            $episode->setTitle($data['title']);
+        }
+
+        if (array_key_exists('airdate', $data)) {
+            $episode->setAirdate($data['airdate']);
+        }
+
+        if (array_key_exists('link', $data)) {
+            $episode->setLink($data['link']);
+        }
+
+        if (array_key_exists('screencap', $data)) {
+            $episode->setScreencap($data['screencap']);
+        }
+
+        return $episode;
     }
 }
