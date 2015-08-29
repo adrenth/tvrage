@@ -14,7 +14,7 @@ use Adrenth\Tvrage\Response\Traits\TrimsArray;
  * @license  http://opensource.org/licenses/MIT The MIT License (MIT)
  * @link     https://github.com/adrenth/tvrage
  */
-abstract class XmlResponseHandler implements ResponseHandler
+abstract class XmlResponseHandler implements ResponseHandlerInterface
 {
     use TrimsArray;
 

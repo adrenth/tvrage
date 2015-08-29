@@ -33,7 +33,7 @@ class ResponseHandlerFactory
      *
      * @param string $handler
      * @param string $xml
-     * @return ResponseHandler
+     * @return ResponseHandlerInterface
      * @throws InvalidHandlerException
      */
     public static function create($handler, $xml)

@@ -13,7 +13,7 @@ use Adrenth\Tvrage\Show;
  * @license  http://opensource.org/licenses/MIT The MIT License (MIT)
  * @link     https://github.com/adrenth/tvrage
  */
-class ShowResponse implements Response
+class ShowResponse implements ResponseInterface
 {
     /**
      * Show

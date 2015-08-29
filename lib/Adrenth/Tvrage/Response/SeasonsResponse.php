@@ -13,7 +13,7 @@ use Adrenth\Tvrage\Season;
  * @license  http://opensource.org/licenses/MIT The MIT License (MIT)
  * @link     https://github.com/adrenth/tvrage
  */
-class SeasonsResponse implements Response
+class SeasonsResponse implements ResponseInterface
 {
     /**
      * Seasons
