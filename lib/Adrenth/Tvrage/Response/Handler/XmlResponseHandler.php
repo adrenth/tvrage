@@ -40,6 +40,4 @@ abstract class XmlResponseHandler implements ResponseHandler
      * @throws InvalidXmlInResponseException
      */
     abstract public function handle();
-
-    // TODO general function for encoding xml to array
 }
