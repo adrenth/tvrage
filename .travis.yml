@@ -8,3 +8,6 @@ install:
 matrix:
   allow_failures:
     - php: hhvm
+notifications:
+  email:
+    - adrenth@gmail.com
