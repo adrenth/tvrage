@@ -1,6 +1,6 @@
 # adrenth/tvrage
 
-[![Build Status](https://secure.travis-ci.org/adrenth/tvrage.png?branch=master)](http://travis-ci.org/adrenth/tvrage) [![Latest Stable Version](https://poser.pugx.org/adrenth/tvrage/v/stable.png)](https://packagist.org/packages/adrenth/tvrage) [![Total Downloads](https://poser.pugx.org/adrenth/tvrage/downloads.png)](https://packagist.org/packages/adrenth/tvrage)
+[![Build Status](https://secure.travis-ci.org/adrenth/tvrage.png?branch=master)](http://travis-ci.org/adrenth/tvrage) [![Latest Stable Version](https://poser.pugx.org/adrenth/tvrage/v/stable)](https://packagist.org/packages/adrenth/tvrage) [![Total Downloads](https://poser.pugx.org/adrenth/tvrage/downloads)](https://packagist.org/packages/adrenth/tvrage) [![Latest Unstable Version](https://poser.pugx.org/adrenth/tvrage/v/unstable)](https://packagist.org/packages/adrenth/tvrage) [![License](https://poser.pugx.org/adrenth/tvrage/license)](https://packagist.org/packages/adrenth/tvrage)
 
 This is an API client for the tvrage.com website. It's using the XML feeds that are publicly available. For more info visit [http://services.tvrage.com/info.php?page=main](http://services.tvrage.com/info.php?page=main).
 
