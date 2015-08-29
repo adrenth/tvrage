@@ -3,7 +3,7 @@
     "description": "API Client for tvrage.com",
     "type": "library",
     "keywords": ["tvrage", "tvrage.com", "api", "library"],
-    "license": "GPL",
+    "license": "MIT",
     "homepage": "http://github.com/adrenth/tvrage",
     "authors": [
         {
